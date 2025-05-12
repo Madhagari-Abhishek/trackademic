@@ -1,38 +1,900 @@
-.App {
+/* Base Styles */
+:root {
+  --primary-color: #4a6fa5;
+  --secondary-color: #166088;
+  --accent-color: #4fc3f7;
+  --dark-color: #2c3e50;
+  --light-color: #f8f9fa;
+  --text-color: #333;
+  --text-light: #777;
+  --success-color: #4caf50;
+  --white: #fff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--light-color);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: var(--text-light);
+}
+
+span {
+  color: var(--primary-color);
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.logo-icon {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.8rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 2rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links button:hover {
+  color: var(--primary-color);
+}
+
+.nav-links button.active {
+  color: var(--primary-color);
+}
+
+.nav-links button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.nav-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 5%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-light);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image-placeholder {
+  width: 80%;
+  height: 400px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 5rem;
+  box-shadow: var(--shadow);
+}
+
+/* Button Styles */
+.cta-button {
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.cta-button.primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.cta-button.primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.cta-button.secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Section Styles */
+.section-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mission Section */
+.mission-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 5rem 5%;
+  background-color: var(--white);
+}
+
+.mission-card, .vision-card {
+  flex: 1;
+  max-width: 500px;
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--light-color);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover, .vision-card:hover {
+  transform: translateY(-10px);
+}
+
+.mission-icon, .vision-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.mission-card h2, .vision-card h2 {
+  margin-bottom: 1rem;
+}
+
+/* Features Section */
+.features-section {
+  padding: 5rem 5%;
+  background-color: var(--light-color);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 5rem 5%;
+  background-color: var(--white);
+}
+
+.contact-container {
+  display: flex;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  flex: 1;
+  padding: 2rem;
+}
+
+.contact-info h2 {
+  margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+  margin-bottom: 2rem;
+}
+
+.contact-methods {
+  margin-top: 2rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.method-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-right: 1rem;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(74, 111, 165, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.method-details h4 {
+  margin-bottom: 0.3rem;
+}
+
+.contact-form-container {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.contact-form-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-success {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--success-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Feedback Section */
+.feedback-section {
+  padding: 5rem 5%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.feedback-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.feedback-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.feedback-intro h2 {
+  margin-bottom: 1rem;
+}
+
+.feedback-form {
+  margin-top: 2rem;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 5rem 5%;
+  background-color: var(--white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-rating {
   display: flex;
-  flex-direction: column;
+  margin-bottom: 1rem;
+  color: #ddd;
+}
+
+.testimonial-rating .filled {
+  color: #ffc107;
+}
+
+.testimonial-text {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.author-details h4 {
+  margin-bottom: 0.2rem;
+}
+
+.testimonial-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.no-testimonials {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-color);
+  color: var(--white);
+  padding: 4rem 5% 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  gap: 3rem;
+}
+
+.footer-about {
+  flex: 2;
+}
+
+.footer-about .logo {
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.footer-about p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-links {
+  flex: 1;
+}
+
+.footer-links h3 {
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.footer-links button:hover {
+  color: var(--white);
+}
+
+.footer-contact {
+  flex: 1;
+}
+
+.footer-contact h3 {
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+}
+
+.footer-contact svg {
+  margin-right: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content {
+    margin-bottom: 3rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .mission-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .nav-links {
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-links li {
+    margin: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .cta-button {
+    width: 100%;
+  }
+  
+  .cta-button.secondary {
+    margin-top: 1rem;
+  }
+}
+/* Add these new styles to your existing App.css */
+
+/* Admin Button */
+.nav-links button.active.admin {
+  color: #ff4444;
+}
+
+.nav-links button.active.admin::after {
+  background-color: #ff4444;
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #ff4444;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.delete-button:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Admin Mode Indicator */
+.admin-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+/* Enhance form inputs */
+.form-group input,
+.form-group textarea {
+  transition: all 0.3s ease;
+  background-color: var(--white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+}
+
+/* Responsive adjustments for admin features */
+@media (max-width: 768px) {
+  .nav-links li:last-child {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .delete-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
   }
+}
+/* Add this to the footer section in App.css */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--white);
+}
+
+/* You might also want to adjust the footer-about section to account for the new icons */
+.footer-about {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+/* Add this to App.css */
+/* Hiring Section */
+.hiring-section {
+  padding: 5rem 5%;
+  background-color: var(--white);
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.job-card {
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.job-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.job-description {
+  margin-bottom: 1.5rem;
+}
+
+.apply-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.apply-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Job Form Styles */
+.job-form {
+  background-color: var(--light-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-top: 3rem;
+}
+
+.job-form h3 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Application Form Styles */
+.application-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.application-form {
+  margin-top: 2rem;
+}
+
+.resume-upload {
+  margin-bottom: 1.5rem;
+}
+
+.resume-upload label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.resume-upload input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: rgba(74, 111, 165, 0.1);
 }
