@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import emailjs from 'emailjs-com';
-import { FaGraduationCap, FaChartLine, FaUsers, FaEnvelope, FaStar, FaLightbulb, FaInstagram, FaFacebook, FaLinkedin, FaTelegram } from 'react-icons/fa';
+import { FaGraduationCap, FaChartLine, FaUsers, FaEnvelope, FaStar, FaLightbulb, FaInstagram, FaFacebook, FaLinkedin, FaTelegram, FaBars, FaTimes } from 'react-icons/fa';
 import { MdSchool, MdContactMail } from 'react-icons/md';
-import TrackademicLogo from './TrackademicLogo';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Contact form handlers
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setMenuOpen(false);
+  };
+
   const handleContactChange = (e) => {
     const { name, value } = e.target;
     setContactForm(prev => ({ ...prev, [name]: value }));
   };
 
-  // Form submissions
   const handleContactSubmit = (e) => {
     e.preventDefault();
     emailjs.send(
@@ -34,42 +41,67 @@ const App = () => {
     });
   };
 
-  // Navigation Component
   const Navigation = () => (
     <nav className="navbar">
       <div className="logo">
         <FaGraduationCap className="logo-icon" />
         <span>Trackademic</span>
       </div>
+      
       <ul className="nav-links">
-        <li><button onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'active' : ''}>
+        <li><button onClick={() => handleTabChange('home')} className={activeTab === 'home' ? 'active' : ''}>
           <MdSchool className="nav-icon" /> Home
         </button></li>
-        <li><button onClick={() => setActiveTab('mission')} className={activeTab === 'mission' ? 'active' : ''}>
+        <li><button onClick={() => handleTabChange('mission')} className={activeTab === 'mission' ? 'active' : ''}>
           <FaLightbulb className="nav-icon" /> Mission
         </button></li>
-        <li><button onClick={() => setActiveTab('features')} className={activeTab === 'features' ? 'active' : ''}>
+        <li><button onClick={() => handleTabChange('features')} className={activeTab === 'features' ? 'active' : ''}>
           <FaChartLine className="nav-icon" /> Features
         </button></li>
-        <li><button onClick={() => setActiveTab('team')} className={activeTab === 'team' ? 'active' : ''}>
+        <li><button onClick={() => handleTabChange('team')} className={activeTab === 'team' ? 'active' : ''}>
           <FaUsers className="nav-icon" /> Our Team
         </button></li>
-        <li><button onClick={() => setActiveTab('contact')} className={activeTab === 'contact' ? 'active' : ''}>
+        <li><button onClick={() => handleTabChange('contact')} className={activeTab === 'contact' ? 'active' : ''}>
           <MdContactMail className="nav-icon" /> Contact
         </button></li>
       </ul>
+      
+      <div className="menu-toggle" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </div>
+      
+      <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
+        <ul className="mobile-nav-links">
+          <li><button onClick={() => handleTabChange('home')} className={activeTab === 'home' ? 'active' : ''}>
+            <MdSchool className="mobile-nav-icon" /> Home
+          </button></li>
+          <li><button onClick={() => handleTabChange('mission')} className={activeTab === 'mission' ? 'active' : ''}>
+            <FaLightbulb className="mobile-nav-icon" /> Mission
+          </button></li>
+          <li><button onClick={() => handleTabChange('features')} className={activeTab === 'features' ? 'active' : ''}>
+            <FaChartLine className="mobile-nav-icon" /> Features
+          </button></li>
+          <li><button onClick={() => handleTabChange('team')} className={activeTab === 'team' ? 'active' : ''}>
+            <FaUsers className="mobile-nav-icon" /> Our Team
+          </button></li>
+          <li><button onClick={() => handleTabChange('contact')} className={activeTab === 'contact' ? 'active' : ''}>
+            <MdContactMail className="mobile-nav-icon" /> Contact
+          </button></li>
+        </ul>
+      </div>
+      
+      <div className={`overlay ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} />
     </nav>
   );
 
-  // Home Component
   const Home = () => (
     <section className="hero">
       <div className="hero-content">
         <h1>Transform Your Institution with <span>Trackademic</span></h1>
         <p className="hero-subtitle">Advanced academic tracking and analytics for modern educational institutions</p>
         <div className="hero-buttons">
-          <button className="cta-button primary" onClick={() => setActiveTab('features')}>Explore Features</button>
-          <button className="cta-button secondary" onClick={() => setActiveTab('contact')}>Request Demo</button>
+          <button className="cta-button primary" onClick={() => handleTabChange('features')}>Explore Features</button>
+          <button className="cta-button secondary" onClick={() => handleTabChange('contact')}>Request Demo</button>
         </div>
       </div>
       <div className="hero-image">
@@ -78,7 +110,6 @@ const App = () => {
     </section>
   );
 
-  // Mission Component
   const MissionVision = () => (
     <section className="mission-section">
       <div className="mission-card">
@@ -98,7 +129,6 @@ const App = () => {
     </section>
   );
 
-  // Features Component
   const CoreFeatures = () => (
     <section className="features-section">
       <h2 className="section-title">Our <span>Core Features</span></h2>
@@ -123,7 +153,6 @@ const App = () => {
     </section>
   );
 
-  // Team & Partners Component
   const TeamAndPartners = () => (
     <>
       <section className="team-section">
@@ -135,7 +164,6 @@ const App = () => {
             { name: "Abhishek Madhagari", role: "CEO & Founder", bio: "B.Tech in CSE(Cybersecurity), Malla Reddy University" },
             { name: "Nihkil Urranki", role: "CTO", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
             { name: "Arun Madhagari", role: "Product Manager", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
-            
           ].map((member, index) => (
             <div key={index} className="team-member">
               <div className="member-avatar">{member.name.charAt(0)}</div>
@@ -167,7 +195,6 @@ const App = () => {
     </>
   );
 
-  // Contact Component
   const ContactUs = () => (
     <section className="contact-section">
       <div className="contact-container">
@@ -209,7 +236,6 @@ const App = () => {
     </section>
   );
 
-  // Footer Component
   const Footer = () => (
     <footer className="footer">
       <div className="footer-content">
@@ -241,10 +267,10 @@ const App = () => {
         <div className="footer-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><button onClick={() => setActiveTab('home')}>Home</button></li>
-            <li><button onClick={() => setActiveTab('features')}>Features</button></li>
-            <li><button onClick={() => setActiveTab('team')}>Our Team</button></li>
-            <li><button onClick={() => setActiveTab('contact')}>Contact</button></li>
+            <li><button onClick={() => handleTabChange('home')}>Home</button></li>
+            <li><button onClick={() => handleTabChange('features')}>Features</button></li>
+            <li><button onClick={() => handleTabChange('team')}>Our Team</button></li>
+            <li><button onClick={() => handleTabChange('contact')}>Contact</button></li>
           </ul>
         </div>
         
@@ -259,9 +285,7 @@ const App = () => {
       </div>
     </footer>
   );
-  
 
-  // Main content render
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
