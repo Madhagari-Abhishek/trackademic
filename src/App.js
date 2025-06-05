@@ -162,8 +162,9 @@ const App = () => {
         <div className="team-grid">
           {[
             { name: "Abhishek Madhagari", role: "CEO & Founder", bio: "B.Tech in CSE(Cybersecurity), Malla Reddy University" },
-            { name: "Nihkil Urranki", role: "CTO", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
-            { name: "Arun Madhagari", role: "Product Manager", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
+            { name: "Nihkil Urranki", role: "CTO & Developer", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
+            { name: "Vasumathi Varnamala", role: "CFO & Psychological Counsellor", bio: "B.A in Psychology,Bhavan's Vivekananda College of Science, Humanities & Commerce." },
+            { name: "Arun Madhagari", role: "Manager", bio: "B.Sc in computer Science & Cloud computing, Loyola Academy Degree & PG College." },
           ].map((member, index) => (
             <div key={index} className="team-member">
               <div className="member-avatar">{member.name.charAt(0)}</div>
@@ -181,10 +182,8 @@ const App = () => {
         
         <div className="partners-grid">
           {[
-            { name: "Johns Academy", logo: "https://via.placeholder.com/150x80?text=EduTech" },
-            { name: "Global Learning", logo: "https://via.placeholder.com/150x80?text=Global+Learning" },
-            { name: "School Systems", logo: "https://via.placeholder.com/150x80?text=School+Systems" },
-            { name: "Digital Campus", logo: "https://via.placeholder.com/150x80?text=Digital+Campus" }
+            { name: "Coming Soon..." }
+          
           ].map((partner, index) => (
             <div key={index} className="partner-logo">
               <img src={partner.logo} alt={partner.name} />
